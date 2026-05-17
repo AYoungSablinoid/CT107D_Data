@@ -2,6 +2,8 @@
 
 code unsigned char ds1302_addr_w[7] = {0x80, 0x82, 0x84, 0x86, 0x88, 0x8a, 0x8c};
 code unsigned char ds1302_addr_r[7] = {0x81, 0x83, 0x85, 0x87, 0x89, 0x8b, 0x8d};
+#define DS1302_DEFAULT_YEAR 26
+#define DS1302_DEFAULT_WEEK 4
 
 static unsigned char bcd_to_dec(unsigned char bcd)
 {
@@ -105,13 +107,13 @@ void DS1302_InitDefault(void)
     DS1302_Read(&t);
     if(t.month == 0 || t.month > 12 || t.date == 0 || t.date > 31 || t.week == 0 || t.week > 7)
     {
-        t.year = 26;
+        t.year = DS1302_DEFAULT_YEAR;
         t.month = 1;
         t.date = 1;
         t.hour = 0;
         t.minute = 0;
         t.second = 0;
-        t.week = 4;
+        t.week = DS1302_DEFAULT_WEEK;
         DS1302_Write(&t);
     }
 }
