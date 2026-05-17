@@ -3,14 +3,14 @@
 
 #define DELAY_TIME 5
 
-/** ¶¨ÒåI2C×ÜÏßÊ±ÖÓÏßºÍÊý¾ÝÏß */
+/** ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 sbit scl = P2^0;
 sbit sda = P2^1;
 
 /**
-* @brief I2C×ÜÏßÖÐÒ»Ð©±ØÒªµÄÑÓÊ±
+* @brief I2Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ê±
 *
-* @param[in] i - ÑÓÊ±Ê±¼äµ÷Õû.
+* @param[in] i - ï¿½ï¿½Ê±Ê±ï¿½ï¿½ï¿½ï¿½ï¿½.
 * @return none
 */
 void i2c_delay(unsigned char i)
@@ -25,7 +25,7 @@ void i2c_delay(unsigned char i)
 }
 
 /**
-* @brief ²úÉúI2C×ÜÏßÆô¶¯Ìõ¼þ.
+* @brief ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 *
 * @param[in] none
 * @param[out] none
@@ -42,7 +42,7 @@ void i2c_start(void)
 }
 
 /**
-* @brief ²úÉúI2C×ÜÏßÍ£Ö¹Ìõ¼þ
+* @brief ï¿½ï¿½ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
 *
 * @param[in] none
 * @param[out] none.
@@ -58,16 +58,16 @@ void i2c_stop(void)
 }
 
 /**
-* @brief I2C·¢ËÍÒ»¸ö×Ö½ÚµÄÊý¾Ý
+* @brief I2Cï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 *
-* @param[in] byt - ´ý·¢ËÍµÄ×Ö½Ú
+* @param[in] byt - ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½Ö½ï¿½
 * @return none
 */
 void i2c_sendbyte(unsigned char byt)
 {
     unsigned char i;
 //
-	EA = 0;   //¹Ø±ÕÖÐ¶Ï£¬±ÜÃâÒòÎªÖÐ¶Ï¶øÓ°Ïì×ÜÐ´¶ÁÐ´µÄÊ±Ðò£¬µ¼ÖÂ¶ÁÐ´Ê§°Ü¡£
+	EA = 0;   //ï¿½Ø±ï¿½ï¿½Ð¶Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ð¶Ï¶ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ð´ï¿½ï¿½Ê±ï¿½ò£¬µï¿½ï¿½Â¶ï¿½Ð´Ê§ï¿½Ü¡ï¿½
     for(i=0; i<8; i++){
         scl = 0;
         i2c_delay(DELAY_TIME);
@@ -88,7 +88,7 @@ void i2c_sendbyte(unsigned char byt)
 }
 
 /**
-* @brief µÈ´ýÓ¦´ð
+* @brief ï¿½È´ï¿½Ó¦ï¿½ï¿½
 *
 * @param[in] none
 * @param[out] none
@@ -108,15 +108,15 @@ unsigned char i2c_waitack(void)
 }
 
 /**
-* @brief I2C½ÓÊÕÒ»¸ö×Ö½ÚÊý¾Ý
+* @brief I2Cï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
 *
 * @param[in] none
 * @param[out] da
-* @return da - ´ÓI2C×ÜÏßÉÏ½ÓÊÕµ½µÃÊý¾Ý
+* @return da - ï¿½ï¿½I2Cï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 unsigned char i2c_receivebyte(void)
 {
-	unsigned char da;
+	unsigned char da = 0;
 	unsigned char i;
 //
 	EA = 0;	
@@ -135,15 +135,15 @@ unsigned char i2c_receivebyte(void)
 }
 
 /**
-* @brief ·¢ËÍÓ¦´ð
+* @brief ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
 *
-* @param[in] ackbit - Éè¶¨ÊÇ·ñ·¢ËÍÓ¦´ð
+* @param[in] ackbit - ï¿½è¶¨ï¿½Ç·ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
 * @return - none
 */
 void i2c_sendack(unsigned char ackbit)
 {
     scl = 0;
-    sda = ackbit;  //0£º·¢ËÍÓ¦´ðÐÅºÅ£»1£º·¢ËÍ·ÇÓ¦´ðÐÅºÅ
+    sda = ackbit;  //0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ÅºÅ£ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ó¦ï¿½ï¿½ï¿½Åºï¿½
     i2c_delay(DELAY_TIME);
     scl = 1;
     i2c_delay(DELAY_TIME);
@@ -153,9 +153,9 @@ void i2c_sendack(unsigned char ackbit)
 }
 
 /**
-* @brief ¶ÁÐ´²Ù×÷¹ý³ÌÖÐÒ»Ð©±ØÒªµÄÑÓÊ±
+* @brief ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ê±
 *
-* @param[in] i - Ö¸¶¨ÑÓÊ±Ê±¼ä
+* @param[in] i - Ö¸ï¿½ï¿½ï¿½ï¿½Ê±Ê±ï¿½ï¿½
 * @return - none
 */
 void operate_delay(unsigned char t)
@@ -168,10 +168,10 @@ void operate_delay(unsigned char t)
 }
 
 /**
-* @brief ÏòAT24C02(add)ÖÐÐ´ÈëÊý¾Ýval
+* @brief ï¿½ï¿½AT24C02(add)ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½val
 *
-* @param[in] add - AT24C02´æ´¢µØÖ·
-* @param[in] val - ´ýÐ´ÈëAT24C02ÏàÓ¦µØÖ·µÄÊý¾Ý
+* @param[in] add - AT24C02ï¿½æ´¢ï¿½ï¿½Ö·
+* @param[in] val - ï¿½ï¿½Ð´ï¿½ï¿½AT24C02ï¿½ï¿½Ó¦ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 * @return - none
 */
 void write_eeprom(unsigned char add,unsigned char val)
@@ -188,10 +188,10 @@ void write_eeprom(unsigned char add,unsigned char val)
 }
 
 /**
-* @brief ´ÓAT24C02(add)ÖÐ¶Á³öÊý¾Ýda
+* @brief ï¿½ï¿½AT24C02(add)ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½da
 *
-* @param[in] add - AT24C02´æ´¢µØÖ·
-* @param[out] da - ´ÓAT24C02ÏàÓ¦µØÖ·ÖÐ¶ÁÈ¡µ½µÄÊý¾Ý
+* @param[in] add - AT24C02ï¿½æ´¢ï¿½ï¿½Ö·
+* @param[out] da - ï¿½ï¿½AT24C02ï¿½ï¿½Ó¦ï¿½ï¿½Ö·ï¿½Ð¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 * @return - da
 */
 unsigned char read_eeprom(unsigned char add)
@@ -213,4 +213,3 @@ unsigned char read_eeprom(unsigned char add)
 	
 	return da;
 }
-
