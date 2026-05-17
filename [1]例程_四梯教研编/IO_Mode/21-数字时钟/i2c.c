@@ -116,7 +116,7 @@ unsigned char i2c_waitack(void)
 */
 unsigned char i2c_receivebyte(void)
 {
-	unsigned char da;
+	unsigned char da = 0;
 	unsigned char i;
 //
 	EA = 0;	
